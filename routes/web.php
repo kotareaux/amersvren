@@ -17,8 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/{key}', function () {
+    return $key;
+})->name('honi');
+
 Route::get('/tes', function () {
-    $items = \DB::table('2021_4')->get(); 
+    $items = \DB::table('2021_4')->get();
     return view('index',[
         'db1'=>$items
     ]);
