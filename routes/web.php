@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HoniController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,17 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/view', 301);
 
-Route::post('/{key}', function () {
-    return $key;
-})->name('honi');
-
-Route::get('/tes', function () {
+/*
+Route::get('/view', function () {
     $items = \DB::table('2021_4')->get();
     return view('index',[
         'db1'=>$items
     ]);
 });
+*/
+
+Route::get('/view', [HoniController::class, 'sendDefDate']);
+
+Route::post('/view', [HoniController::class, 'sendSelDate'])->name('viewchgdate');
+
+Route::post('/reserve', function () {
+    echo "ss";
+})->name('rsvin');
