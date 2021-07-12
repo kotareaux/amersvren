@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 use App\Http\Controllers\HoniController;
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,13 @@ Route::get('/view', [HoniController::class, 'sendDefDate']);
 
 Route::post('/view', [HoniController::class, 'sendSelDate'])->name('viewchgdate');
 
-Route::post('/reserve', function () {
-    echo "ss";
+Route::post('/reserve', function (Request $request) {
+    $res = json_decode($request->jrsi);
+    return view('reserve', [
+        'res'=>$res
+    ]);
 })->name('rsvin');
+
+Route::post('/send', function () {
+    echo "s";
+})->name('rsvset');
