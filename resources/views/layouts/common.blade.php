@@ -9,12 +9,11 @@
 </head>
 <body >
     <div class="oya">
-    <header>
         @include('layouts.header')
-    </header>
-    <main class="boya">
+    <div class="boya">
         @yield('content')
-    </main>
+        @yield('table')
+    </div>
 </div>
 </body>
 </html>

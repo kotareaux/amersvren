@@ -10,7 +10,4 @@ class DefD extends Model
     use HasFactory;
     protected $table = 'formanage';
 
-    public function getDefD () {
-        return [$this->defy, $this->defm];
-    }
 }

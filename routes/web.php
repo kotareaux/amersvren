@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\TabvController;
+use App\Http\Controllers\RsvController;
 use App\Http\Controllers\HoniController;
 /*
 |--------------------------------------------------------------------------
@@ -25,17 +27,18 @@ Route::get('/view', function () {
 });
 */
 
-Route::get('/view', [HoniController::class, 'sendDefDate']);
+Route::get('/view', [TabvController::class, 'sendDefDate']);
 
-Route::post('/view', [HoniController::class, 'sendSelDate'])->name('viewchgdate');
+Route::post('/view', [TabvController::class, 'sendSelDate'])->name('viewchgdate');
+
+Route::get('/reserve', [HoniController::class, 'gotoTop']);
 
 Route::post('/reserve', function (Request $request) {
-    $res = json_decode($request->jrsi);
     return view('reserve', [
-        'res'=>$res
+        'res'=>$request->jrsi
     ]);
 })->name('rsvin');
 
-Route::post('/send', function () {
-    echo "s";
-})->name('rsvset');
+Route::get('/send', [HoniController::class, 'gotoTop']);
+Route::post('/send', [RsvController::class, 'sendRsv'])->name('rsvset');
+

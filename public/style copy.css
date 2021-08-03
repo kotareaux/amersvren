@@ -1,6 +1,6 @@
 :root {
 	font-size: 12pt;
-	background-color: #f5f0ea;
+	background-color: #f0eae5;
 	color: #333;
 	font-family: 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
 
@@ -34,7 +34,20 @@ span.slbtn{
 	vertical-align: middle;
 	text-align: right;
 }
+a.lbtn{
+	padding: .25rem 1rem;
+	color: white;
+	background: linear-gradient(#D00, #000);
+	text-decoration: none;
+	border: 1.5px;
+	border-radius: 1rem;
+	border-style: solid;
+	border-color: black;
+	color: white;
+	cursor: pointer;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.4);
 
+}
 /*表選択部*/
 div.hhlsk{
 	text-align: left;
@@ -59,9 +72,8 @@ select:hover{
 option{
 	font-size: 12pt;
 }
-input[type="submit"].yhhb{
-	vertical-align: bottom;
-    font-size: 14pt;
+button.yhhb{
+	font-size: 14pt;
 	padding: .14rem 1rem;
 	margin-left: .5rem;
 }
@@ -70,21 +82,21 @@ input[type="submit"].yhhb{
 div.boya{
 	margin: 1rem;
 }
-input[type="submit"]{
-	background: linear-gradient(#D00, #000);
+button, input[type="submit"]{
+	background: transparent;
 	border: 1.5px;
 	border-radius: 1rem;
-	border-style: solid;
-	border-color: black;
-	color: white;
+	/*border-style: solid;*/
+	/*border-color: black;*/
+	color: rgb(41, 50, 70);
 	cursor: pointer;
-	box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+	box-shadow: 2px 2px 3px rgba(0,0,0,.4), -2px -2px 3px rgba(255,255,255,.8);
 	vertical-align: top;
 }
-input[type="submit"]:hover{
-	background: linear-gradient(#F00, #222);
+button:hover, a.lbtn:hover, input[type="submit"]:hover{
+	box-shadow: inset 2px 2px 3px rgba(0,0,0,.4), inset -2px -2px 3px rgba(255,255,255,.8);
 }
-input[type="submit"]:active{
+button:active, a.lbtn:active, input[type="submit"]:active{
 	box-shadow: none;
 	position: relative;
 	top: 1px;
@@ -93,7 +105,9 @@ table {
 	text-align: center;
 	border-collapse: separate;
 	border-spacing: 0;
+    border-radius: 7px;
 	overflow: hidden;
+	box-shadow: 2px 2px 3px rgba(0,0,0,.4), -2px -2px 3px rgba(255,255,255,.8);
 }
 th {
 	padding: 12px 20px;
@@ -118,6 +132,12 @@ th:last-child{
 	border-radius: 0px 7px 0px 0px;
 	-webkit-border-radius: 0px 7px 0px 0px;
 	-moz-border-radius: 0px 7px 0px 0px;
+	border-right-style: none;
+}
+tr:last-child{
+	border-radius: 0px 0px 7px 7px;
+	-webkit-border-radius: 0px 0px 7px 7px;
+	-moz-border-radius: 0px 0px 7px 7px;
 	border-right-style: none;
 }
 tr td {

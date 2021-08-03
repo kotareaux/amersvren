@@ -10,5 +10,4 @@ class ActivTab extends Model
     use HasFactory;
     protected $table = 'activetab';
 
-
 }

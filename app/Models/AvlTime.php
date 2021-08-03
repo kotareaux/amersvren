@@ -10,7 +10,4 @@ class AvlTime extends Model
     use HasFactory;
     protected $table = 'availabletime';
 
-    public function getNumTime () {
-        return $this->timename;
-    }
 }
