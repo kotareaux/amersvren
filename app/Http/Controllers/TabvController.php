@@ -17,7 +17,7 @@ class TabvController extends Controller
     public function sendSelDate (Request $request){
         $yyyy = $request->yyyy;
         $mm = $request->month+1;
-        $altab = Reserve::where([
+        $altab = ActivTab::where([
             ['yyyy', $yyyy],
             ['mm', $mm],
         ])->exists();
