@@ -77,5 +77,9 @@ class RsvController extends Controller
             }
         }
 
+
+        #insert into availabletime (yyyy, mm, dayid, timeid, starttime, endtime, timename) select yyyy, '6' as mm, dayid, timeid, starttime, endtime, timename from availabletime where mm = '5';
+        #insert into reserves のとき、使用不可のnameは''にする
+
     }
 }
