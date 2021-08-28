@@ -95,6 +95,11 @@ table {
 	border-spacing: 0;
 	overflow: hidden;
 }
+@media screen and(max-width: 700px){
+    table{
+        min-width: 100%;
+    }
+}
 th {
 	padding: 12px 20px;
 	background: linear-gradient(#D00, #000);
