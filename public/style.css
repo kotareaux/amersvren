@@ -156,7 +156,7 @@ tr.Sun{
 }
 .trbi{
 	text-align: left;
-	min-width: 10rem;
+	min-width: 16rem;
 }
 button.rbtn, input[type="submit"].rbtn{
 	width: 6rem;
