@@ -42,3 +42,7 @@ Route::post('/reserve', function (Request $request) {
 Route::get('/send', [HoniController::class, 'gotoTop']);
 Route::post('/send', [RsvController::class, 'sendRsv'])->name('rsvset');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
