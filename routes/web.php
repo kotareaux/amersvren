@@ -43,6 +43,10 @@ Route::get('/send', [HoniController::class, 'gotoTop']);
 Route::post('/send', [RsvController::class, 'sendRsv'])->name('rsvset');
 
 
-Auth::routes();
+Auth::routes([
+    'verify' => false,
+    'register' => false,
+    'reset' => false,
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

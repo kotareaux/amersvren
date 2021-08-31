@@ -1,4 +1,10 @@
 <header>
-    <span class="nama">アメミュ練習室予約システム</span>
-    <span class="slbtn"><a href="config/login.php"><button class='yhhb'>Login</button></a></span>
+    <span class="nama"><a href="{{ url('/view') }}" class="titl">アメミュ練習室予約システム</a></span>
+    <span class="slbtn">
+    @auth
+    <a href="{{ route('logout') }}"><button class='yhhb'>ログアウト</button></a>
+    @else
+    <a href="{{ route('login') }}"><button class='yhhb'>管理ページ</button></a>
+    @endauth
+    </span>
 </header>

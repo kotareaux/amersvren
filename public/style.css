@@ -34,7 +34,10 @@ span.slbtn{
 	vertical-align: middle;
 	text-align: right;
 }
-
+a.titl{
+    color: white;
+    text-decoration: none;
+}
 /*表選択部*/
 div.hhlsk{
 	text-align: left;
@@ -173,7 +176,7 @@ div.roya{
 .renai input{
 	margin-left: 1rem;
 }
-.renai input[type=text]{
+.renai input[type=text], .renai input[type=password]{
 	padding: .5rem;
 	font-size: 12pt;
 	min-width: 20rem;
