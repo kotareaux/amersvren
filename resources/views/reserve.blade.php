@@ -29,4 +29,5 @@
 <span class="reker">{{Form::submit('確定', ['class'=>'yhhb', 'name'=>'resb',])}}</span>
 </div>
 {!! Form::close() !!}
+<a href="{{ url('/view') }}"><i>予約一覧へ戻る</i></a>
 @endsection
