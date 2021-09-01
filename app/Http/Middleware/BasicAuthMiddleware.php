@@ -19,7 +19,7 @@ class BasicAuthMiddleware
         $username = $request->getUser();
         $password = $request->getPassword();
 
-        if ($username == env('USERNAME') && $password == env('PASSWORD')) {
+        if ($username == env('BASIC_AUTH_USERNAME') && $password == env('BASIC_AUTH_PASSWORD')) {
             return $next($request);
         }
 
