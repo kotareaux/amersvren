@@ -27,5 +27,10 @@
 @endsection
 
 @section('table')
+@auth
+つくる？
+@endauth
+@guest
 準備中、あるいは予約表データが存在しません
+@endguest
 @endsection

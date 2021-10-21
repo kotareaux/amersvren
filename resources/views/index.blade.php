@@ -52,7 +52,12 @@
             {!! Form::open(['route' => 'rsvin']) !!}
             {{ csrf_field() }}
             {{Form::hidden('jrsi', $peri)}}
+            @auth
+            <td class="trna">{{$rinfo[$i][$j]['name'] ?? Form::submit('使用不可に', ['class'=>'rbtn']);}}</td>
+            @endauth
+            @guest
             <td class="trna">{{$rinfo[$i][$j]['name'] ?? Form::submit('予約', ['class'=>'rbtn']);}}</td>
+            @endguest
             <td class="trki">{{$rinfo[$i][$j]['sband'] ?? null}}</td>
             <td class="trbi">{{$rinfo[$i][$j]['biko'] ?? null}}</td>
             </tr>
