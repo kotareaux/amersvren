@@ -26,9 +26,9 @@ Route::get('/view', function () {
     ]);
 });
 */
-
-Route::get('/view', [TabvController::class, 'sendDefDate']);
-
+Route::group(['middleware' => 'basicauth'], function() {
+    Route::get('/view', [TabvController::class, 'sendDefDate']);
+});
 Route::post('/view', [TabvController::class, 'sendSelDate'])->name('viewchgdate');
 
 Route::get('/reserve', [HoniController::class, 'gotoTop']);
@@ -42,3 +42,11 @@ Route::post('/reserve', function (Request $request) {
 Route::get('/send', [HoniController::class, 'gotoTop']);
 Route::post('/send', [RsvController::class, 'sendRsv'])->name('rsvset');
 
+
+Auth::routes([
+    'verify' => false,
+    'register' => false,
+    'reset' => false,
+]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

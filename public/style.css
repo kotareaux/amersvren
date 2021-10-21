@@ -18,7 +18,6 @@ header{
 	background: linear-gradient(#D00, #000);
 	height: 3.5rem;
 	width: 100%;
-	color: white;
 	display: table;
 }
 span.nama{
@@ -34,7 +33,10 @@ span.slbtn{
 	vertical-align: middle;
 	text-align: right;
 }
-
+a.titl{
+    color: white;
+    text-decoration: none;
+}
 /*表選択部*/
 div.hhlsk{
 	text-align: left;
@@ -59,7 +61,7 @@ select:hover{
 option{
 	font-size: 12pt;
 }
-input[type="submit"].yhhb{
+input[type="submit"].yhhb, button.yhhb{
 	vertical-align: bottom;
     font-size: 14pt;
 	padding: .14rem 1rem;
@@ -70,7 +72,7 @@ input[type="submit"].yhhb{
 div.boya{
 	margin: 1rem;
 }
-input[type="submit"]{
+input[type="submit"], button{
 	background: linear-gradient(#D00, #000);
 	border: 1.5px;
 	border-radius: 1rem;
@@ -81,10 +83,10 @@ input[type="submit"]{
 	box-shadow: 2px 2px 2px rgba(0,0,0,.4);
 	vertical-align: top;
 }
-input[type="submit"]:hover{
+input[type="submit"]:hover, button:hover{
 	background: linear-gradient(#F00, #222);
 }
-input[type="submit"]:active{
+input[type="submit"]:active, button:active{
 	box-shadow: none;
 	position: relative;
 	top: 1px;
@@ -173,7 +175,7 @@ div.roya{
 .renai input{
 	margin-left: 1rem;
 }
-.renai input[type=text]{
+.renai input[type=text], .renai input[type=password]{
 	padding: .5rem;
 	font-size: 12pt;
 	min-width: 20rem;

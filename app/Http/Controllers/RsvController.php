@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Reserve;
 
 class RsvController extends Controller
@@ -56,26 +57,50 @@ class RsvController extends Controller
             header('Refresh: 5; URL=/');
             die('エラー：予約データが重複しています。<br>5秒後にトップへ戻ります。');
         }else{
-            #insert
-            $ins = Reserve::insert(
-                [
-                    'yyyy' => $srestime->yyyy,
-                    'mm' => $srestime->mm,
-                    'date' => $srestime->day,
-                    'time' => $srestime->timeid,
-                    'band' => $resinput['kind'],
-                    'name' => $resinput['name'],
-                    'biko' => $resinput['biko'],
-                ]
-            );
+            if (Auth::check()){
+            #insert 使用不可
+                $ins = Reserve::insert(
+                    [
+                        'yyyy' => $srestime->yyyy,
+                        'mm' => $srestime->mm,
+                        'date' => $srestime->day,
+                        'time' => $srestime->timeid,
+                        'band' => 2,
+                        'name' => '',
+                        'biko' => $resinput['biko'],
+                    ]
+                );
+            }else{
+            #insert 予約
+                $ins = Reserve::insert(
+                    [
+                        'yyyy' => $srestime->yyyy,
+                        'mm' => $srestime->mm,
+                        'date' => $srestime->day,
+                        'time' => $srestime->timeid,
+                        'band' => $resinput['kind'],
+                        'name' => $resinput['name'],
+                        'biko' => $resinput['biko'],
+                    ]
+                );
+            }
+
             if($ins){
                 header('Refresh: 5; URL=/');
-                echo('予約が完了しました。<br>5秒後にトップへ戻ります。<br><a href="/">あるいはここからトップへ</a>');
+                if(Auth::check()){
+                    echo('設定が完了しました。<br>5秒後にトップへ戻ります。<br><a href="/">あるいはここからトップへ</a>');
+                }else{
+                    echo('予約が完了しました。<br>5秒後にトップへ戻ります。<br><a href="/">あるいはここからトップへ</a>');
+                }
             }else{
                 header('Refresh: 5; URL=/');
                 die('エラー：データの登録に失敗しました。<br>5秒後にトップへ戻ります。');
             }
         }
+
+
+        #insert into availabletime (yyyy, mm, dayid, timeid, starttime, endtime, timename) select yyyy, '6' as mm, dayid, timeid, starttime, endtime, timename from availabletime where mm = '5';
+        #insert into reserves のとき、使用不可のnameは''にする
 
     }
 }
