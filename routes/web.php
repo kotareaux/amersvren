@@ -26,9 +26,8 @@ Route::get('/view', function () {
     ]);
 });
 */
-Route::group(['middleware' => 'basicauth'], function() {
-    Route::get('/view', [TabvController::class, 'sendDefDate']);
-});
+Route::get('/view', [TabvController::class, 'sendDefDate']);
+
 Route::post('/view', [TabvController::class, 'sendSelDate'])->name('viewchgdate');
 
 Route::get('/reserve', [HoniController::class, 'gotoTop']);
