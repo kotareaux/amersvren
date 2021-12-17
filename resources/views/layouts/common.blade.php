@@ -21,6 +21,9 @@
     <div class="boya">
         @yield('content')
         @yield('table')
+        @auth
+        <a href="http://kotareaux.wp.xdomain.jp/">合宿所下見記録はこちら</a>
+        @endauth
     </div>
 </div>
 </body>
