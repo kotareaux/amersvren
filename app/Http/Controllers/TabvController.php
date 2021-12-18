@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\AvlTime;
 use App\Models\ActivTab;
 use App\Models\DefD;
@@ -46,23 +47,45 @@ class TabvController extends Controller
     }
 
     public function sendDefDate (){
-        $defa = DefD::first();
+        if(Auth::check()){
+            $defa = DefD::first();  //管理者モードの場合はformanageのdefay,defam参照
+        }else{
+            $defa = [
+                "defay" => idate('Y'),
+                "defam" => idate('m')
+            ];
+        }
+
+        $yyyy = $defa['defay'];
+        $mm = $defa['defam'];
+        //sendseldateからコピ
+        $altab = ActivTab::where([
+            ['yyyy', $yyyy],
+            ['mm', $mm],
+        ])->exists();
         $avly = [];
         $ravly = ActivTab::groupBy('yyyy')->get(['yyyy'])->toArray();
         foreach ($ravly as $row){
             $avly[$row['yyyy']] = $row['yyyy'];
         }
-        $yyyy = $defa['defay'];
-        $mm = $defa['defam'];
-        $atim = $this->getaTime($yyyy, $mm);
-        $rsinf = $this->getRsv($yyyy, $mm);
-        return view('index', [
-            'avly' => $avly,
-            'tyear' => $yyyy,
-            'tmnth' => $mm,
-            'tinfo' => $atim,
-            'rinfo' => $rsinf
-        ]);
+        if($altab){
+            $atim = $this->getaTime($yyyy, $mm);
+            $rsinf = $this->getRsv($yyyy, $mm);
+            return view('index', [
+                'avly' => $avly,
+                'tyear' => $yyyy,
+                'tmnth' => $mm,
+                'tinfo' => $atim,
+                'rinfo' => $rsinf
+            ]);
+        }else{
+            return view('index_notab', [
+                'avly' => $avly,
+                'tyear' => $yyyy,
+                'tmnth' => $mm,
+            ]);
+        }
+
     }
 
     public function getaTime ($yyyy, $mm){
