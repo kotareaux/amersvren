@@ -26,9 +26,7 @@ Route::get('/view', function () {
     ]);
 });
 */
-Route::get('/view', [TabvController::class, 'sendDefDate']);
-
-Route::post('/view', [TabvController::class, 'sendSelDate'])->name('viewchgdate');
+Route::any('/view', [TabvController::class, 'showTab'])->name('viewtab');
 
 Route::get('/reserve', [HoniController::class, 'gotoTop']);
 
@@ -47,5 +45,3 @@ Auth::routes([
     'register' => false,
     'reset' => false,
 ]);
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
