@@ -25,26 +25,53 @@
 {!! Form::close() !!}
 </div>
 @endsection
-
+<!--
+    @php
+    echo "<pre>";
+    var_dump($tinfo);
+    echo "</pre>";
+    @endphp
+-->
 @section('table')
+@auth
+<div class="hhlsk">
+{!! Form::open(['url' => '/#']) !!}
+    {{ csrf_field() }}
+    {!! Form::submit('デフォルトに設定', ['class'=>'yhhb']); !!}
+{!! Form::close() !!}
+</div>
+@endauth
 <table class='rhyo'>
 <tr><th>日付</th><th>時間帯</th><th class='tyo'>予約者</th><th class='tyo'>種類</th><th class='tbi'>備考</th></tr>
     @for ($i = 1; $i <= date('t', strtotime($tyear.'-'.$tmnth)); $i++)
         @php
-            $yo = date('w', mktime(0, 0, 0, $tmnth, $i, $tyear));
-            $tpy = count($tinfo[$yo]);
+            $yo = date('w', mktime(0, 0, 0, $tmnth, $i, $tyear));   //1日の曜日
+            $tpy = count($tinfo[$yo]);  //その日の時間コマ数
             $yos = date('D', mktime(0, 0, 0, $tmnth, $i, $tyear));
             $yoc = array("日", "月", "火", "水", "木", "金", "土");
         @endphp
         @for ($j = 0; $j < $tpy; $j++)
             <tr class={{$yos}}>
             @if($j==0)
-                <td rowspan="{{$tpy}}" class="hi">{{$i}}({{$yoc[$yo]}})</td>
+                <td rowspan="{{$tpy}}" class="hi">{{$i}}({{$yoc[$yo]}})
+                @auth
+                @php
+                    $rtinfo = array('yyyy'=>$tyear, 'mm'=>$tmnth, 'tpy'=>$tpy, 'day'=>$i, 'youbi'=>$yoc[$yo], 'dateOrTime'=>0);
+                    $jrstinfo = json_encode($rtinfo);
+                    $peri = str_rot13(base64_encode($jrstinfo));
+                @endphp
+                {!! Form::open(['route' => 'rsvin']) !!}
+                {{ csrf_field() }}
+                    {{Form::hidden('jrsi', $peri)}}
+                    {!! Form::submit('使用不可に', ['class'=>'rbtn']); !!}
+                {!! Form::close() !!}
+                @endauth
+                </td>
             @endif
             <td>{{$tinfo[$yo][$j]["timename"]}}</td>
             @php
             $rtinfo = $tinfo[$yo][$j];
-            $rtinfo += array('day'=>$i, 'youbi'=>$yoc[$yo]);
+            $rtinfo += array('day'=>$i, 'youbi'=>$yoc[$yo], 'dateOrTime'=>1);
             $jrstinfo = json_encode($rtinfo ?? null);
             $peri = str_rot13(base64_encode($jrstinfo));
             @endphp

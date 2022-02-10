@@ -10,7 +10,8 @@ class RsvController extends Controller
 {
     public function sendRsv(Request $request){
         $resinput = $request->only(['name', 'kind', 'biko', 'res']);
-        $srestime = json_decode(base64_decode(str_rot13($resinput['res'])));
+        $srestime = json_decode(base64_decode(str_rot13($resinput['res'])),true);
+        extract($srestime);
         /*
             array(4) {
             ["name"]=>
@@ -43,15 +44,33 @@ class RsvController extends Controller
             string(3) "土"
             }
         */
-        #使える表への予約かどうか
+
 
         #重複確認
-        $aru = Reserve::where([
-                ['yyyy', $srestime->yyyy],
-                ['mm', $srestime->mm],
-                ['date', $srestime->day],
-                ['time', $srestime->timeid]
+        if($dateOrTime==0){
+            for($i=0; $i<(int)$tpy; $i++){
+                $aru = Reserve::where([
+                    ['yyyy', $yyyy],
+                    ['mm', $mm],
+                    ['date', $day],
+                    ['time', $i]
+                ])->exists();
+                if($aru){
+                    break;
+                }
+            }
+        }elseif($dateOrTime==1){
+            $aru = Reserve::where([
+                ['yyyy', $yyyy],
+                ['mm', $mm],
+                ['date', $day],
+                ['time', $timeid]
             ])->exists();
+        }else{
+            header('Refresh: 5; URL=/');
+            die('エラー：内部エラーが発生しました。<br>5秒後にトップへ戻ります。');
+        }
+
 
         if($aru){
             header('Refresh: 5; URL=/');
@@ -59,25 +78,41 @@ class RsvController extends Controller
         }else{
             if (Auth::check()){
             #insert 使用不可
-                $ins = Reserve::insert(
-                    [
-                        'yyyy' => $srestime->yyyy,
-                        'mm' => $srestime->mm,
-                        'date' => $srestime->day,
-                        'time' => $srestime->timeid,
-                        'band' => 2,
-                        'name' => '',
-                        'biko' => $resinput['biko'],
-                    ]
-                );
+                if($dateOrTime==0){
+                    for($i=0; $i<(int)$tpy; $i++){
+                        $ins = Reserve::insert(
+                            [
+                                'yyyy' => $yyyy,
+                                'mm' => $mm,
+                                'date' => $day,
+                                'time' => $i,
+                                'band' => 2,
+                                'name' => '',
+                                'biko' => $resinput['biko'],
+                            ]
+                        );
+                    }
+                }elseif($dateOrTime==1){
+                    $ins = Reserve::insert(
+                        [
+                            'yyyy' => $yyyy,
+                            'mm' => $mm,
+                            'date' => $day,
+                            'time' => $timeid,
+                            'band' => 2,
+                            'name' => '',
+                            'biko' => $resinput['biko'],
+                        ]
+                    );
+                }
             }else{
             #insert 予約
                 $ins = Reserve::insert(
                     [
-                        'yyyy' => $srestime->yyyy,
-                        'mm' => $srestime->mm,
-                        'date' => $srestime->day,
-                        'time' => $srestime->timeid,
+                        'yyyy' => $yyyy,
+                        'mm' => $mm,
+                        'date' => $day,
+                        'time' => $timeid,
                         'band' => $resinput['kind'],
                         'name' => $resinput['name'],
                         'biko' => $resinput['biko'],
@@ -100,7 +135,6 @@ class RsvController extends Controller
 
 
         #insert into availabletime (yyyy, mm, dayid, timeid, starttime, endtime, timename) select yyyy, '6' as mm, dayid, timeid, starttime, endtime, timename from availabletime where mm = '5';
-        #insert into reserves のとき、使用不可のnameは''にする
 
     }
 }

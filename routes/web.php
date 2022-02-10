@@ -32,7 +32,7 @@ Route::get('/reserve', [HoniController::class, 'gotoTop']);
 
 Route::post('/reserve', function (Request $request) {
     return view('reserve', [
-        'res'=>$request->jrsi
+        'res'=>$request->jrsi,
     ]);
 })->name('rsvin');
 

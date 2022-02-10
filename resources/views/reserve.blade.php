@@ -12,8 +12,12 @@
 <div class='htle'>予約フォーム</div>
 @endguest
 <div class="rehi">
-	<span class="srehi">日時：{{$scres->yyyy}}/{{$scres->mm}}/{{$scres->day}} ({{$scres->youbi}}) {{$scres->timename}}
-    <span class="srehit">({{$scres->starttime}}～{{$scres->endtime}})</span></span>
+	<span class="srehi">日時：{{$scres->yyyy}}/{{$scres->mm}}/{{$scres->day}} ({{$scres->youbi}})
+        @if($scres->dateOrTime)
+        {{$scres->timename}}
+        <span class="srehit">({{$scres->starttime}}～{{$scres->endtime}})</span>
+        @endif
+    </span>
 </div>
 {!! Form::open(['route' => 'rsvset', 'class' => 'renai']) !!}
 {{ csrf_field() }}
