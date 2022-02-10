@@ -2,7 +2,6 @@
 @section('title','Top')
 
 @section('content')
-
 <div class="htle">
     {{$tyear}}年{{$tmnth}}月の予約表
 </div>
