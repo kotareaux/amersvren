@@ -14,55 +14,25 @@ use App\Models\Reserve;
 
 class TabvController extends Controller
 {
-    //選択された年・月を表表示に送る
-    public function sendSelDate (Request $request){
-        $yyyy = $request->yyyy;
-        $mm = $request->month+1;
-        $altab = ActivTab::where([
-            ['yyyy', $yyyy],
-            ['mm', $mm],
-        ])->exists();
-        $avly = [];
-        $ravly = ActivTab::groupBy('yyyy')->get(['yyyy'])->toArray();
-        foreach ($ravly as $row){
-            $avly[$row['yyyy']] = $row['yyyy'];
-        }
-        if($altab){
-            $atim = $this->getaTime($yyyy, $mm);
-            $rsinf = $this->getRsv($yyyy, $mm);
-            return view('index', [
-                'avly' => $avly,
-                'tyear' => $yyyy,
-                'tmnth' => $mm,
-                'tinfo' => $atim,
-                'rinfo' => $rsinf
-            ]);
+    public function showTab (Request $request){
+        if($request->has('yyyy') and $request->has('month')){
+            $yyyy = $request->yyyy;
+            $mm = $request->month+1;
         }else{
-            return view('index_notab', [
-                'avly' => $avly,
-                'tyear' => $yyyy,
-                'tmnth' => $mm,
-            ]);
+            if(Auth::check()){
+                $defa = DefD::first();  //管理者モードの場合はformanageのdefay,defam参照
+                $yyyy = $defa['defay'];
+                $mm = $defa['defam'];
+            }else{
+                $yyyy = idate('Y');
+                $mm = idate('m');
+            }
         }
-    }
-
-    public function sendDefDate (){
         if(Auth::check()){
-            $defa = DefD::first();  //管理者モードの場合はformanageのdefay,defam参照
+            $altab = AvlTime::where([['yyyy', $yyyy], ['mm', $mm]])->exists();
         }else{
-            $defa = [
-                "defay" => idate('Y'),
-                "defam" => idate('m')
-            ];
+            $altab = ActivTab::where([['yyyy', $yyyy],['mm', $mm],])->exists();
         }
-
-        $yyyy = $defa['defay'];
-        $mm = $defa['defam'];
-        //sendseldateからコピ
-        $altab = ActivTab::where([
-            ['yyyy', $yyyy],
-            ['mm', $mm],
-        ])->exists();
         $avly = [];
         $ravly = ActivTab::groupBy('yyyy')->get(['yyyy'])->toArray();
         foreach ($ravly as $row){
@@ -85,7 +55,6 @@ class TabvController extends Controller
                 'tmnth' => $mm,
             ]);
         }
-
     }
 
     public function getaTime ($yyyy, $mm){
