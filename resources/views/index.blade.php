@@ -14,7 +14,7 @@
 日曜日  9：00&#12316;19：00 第6練<br>
 </div>
 <div class="hhlsk">
-{!! Form::open(['route' => 'viewchgdate']) !!}
+{!! Form::open(['route' => 'viewtab']) !!}
     {{ csrf_field() }}
     {{"表示する表を変更："}}
     {!! Form::select('yyyy', $avly, $tyear); !!}
