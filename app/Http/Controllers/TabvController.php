@@ -14,7 +14,7 @@ use App\Models\Reserve;
 
 class TabvController extends Controller
 {
-    public function sendDefDate (Request $request){
+    public function showTab (Request $request){
         if($request->has('yyyy') and $request->has('month')){
             $yyyy = $request->yyyy;
             $mm = $request->month+1;

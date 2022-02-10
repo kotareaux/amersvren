@@ -26,7 +26,7 @@ Route::get('/view', function () {
     ]);
 });
 */
-Route::any('/view', [TabvController::class, 'sendDefDate'])->name('viewtab');
+Route::any('/view', [TabvController::class, 'showTab'])->name('viewtab');
 
 Route::get('/reserve', [HoniController::class, 'gotoTop']);
 
