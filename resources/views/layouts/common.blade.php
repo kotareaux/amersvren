@@ -18,7 +18,7 @@
 @yield('additionalHead')
 <title>@yield('title') | アメミュ練習室予約システム</title>
 </head>
-<body >
+<body>
     <div class="oya">
         @include('layouts.header')
     <div class="boya">

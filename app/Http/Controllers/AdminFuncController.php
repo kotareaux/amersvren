@@ -14,5 +14,12 @@ class AdminFuncController extends Controller
             'defay' => $atym[0],
             'defam' => $atym[1]
         ]);
+        if($setDef){
+            header('Refresh: 5; URL=/');
+            echo('設定が完了しました。<br>5秒後にトップへ戻ります。<br><a href="/">あるいはここからトップへ</a>');
+        }else{
+            header('Refresh: 5; URL=/');
+            die('エラー：データの登録に失敗しました。<br>5秒後にトップへ戻ります。');
+        }
     }
 }
