@@ -6,11 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\AvlTime;
 use App\Models\ActivTab;
-use App\Models\DefD;
 use App\Models\Reserve;
-
-//use App\Models\ActivTab;
-//use Illuminate\Support\Facades\DB;
+use App\Models\DefTab;
 
 class TabvController extends Controller
 {
@@ -20,7 +17,7 @@ class TabvController extends Controller
             $mm = $request->month+1;
         }else{
             if(Auth::check()){
-                $defa = DefD::first();  //管理者モードの場合はformanageのdefay,defam参照
+                $defa = DefTab::first();  //管理者モードの場合はdeftabのdefay,defam参照
                 $yyyy = $defa['defay'];
                 $mm = $defa['defam'];
             }else{

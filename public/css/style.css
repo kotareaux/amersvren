@@ -1,0 +1,115 @@
+:root {
+	font-size: 12pt;
+	background-color: #f5f0ea;
+	color: #333;
+	font-family: 'Noto Sans JP', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+
+}
+body{
+	margin: 0;
+	padding: 0;
+	-webkit-text-size-adjust: 100%;
+}
+form{
+	margin-bottom: 0;
+}
+/*ヘッダー部*/
+header{
+	background: linear-gradient(#D00, #000);
+	height: 3.5rem;
+	width: 100%;
+	display: table;
+}
+span.nama{
+	padding: 0 0 0 1rem;
+	display: table-cell;
+	font-size: 18pt;
+	font-style: italic;
+	vertical-align: middle;
+}
+span.slbtn{
+	padding: 0 1rem 0 0;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: right;
+}
+a.titl{
+    color: white;
+    text-decoration: none;
+}
+input[type="submit"].yhhb, button.yhhb{
+	vertical-align: bottom;
+    font-size: 14pt;
+	padding: .14rem 1rem;
+	margin-left: .5rem;
+}
+/**/
+div.boya{
+	margin: 1rem;
+}
+input[type="submit"], button{
+	background: linear-gradient(#D00, #000);
+	border: 1.5px;
+	border-radius: 1rem;
+	border-style: solid;
+	border-color: black;
+	color: white;
+	cursor: pointer;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+	vertical-align: center;
+}
+input[type="submit"]:hover, button:hover{
+	background: linear-gradient(#F00, #222);
+}
+input[type="submit"]:active, button:active{
+	box-shadow: none;
+	position: relative;
+	top: 1px;
+}
+div.htle{
+	font-size: 26pt;
+	text-shadow: 2px 2px 2px rgba(0,0,0,.4);
+}
+div.roya{
+	margin: 1rem;
+	font-size: 14pt;
+}
+.renai input{
+	margin-left: 1rem;
+}
+.renai input[type=text], .renai input[type=password]{
+	padding: .5rem;
+	font-size: 12pt;
+	min-width: 20rem;
+	background: #EEE;
+	border: 1px;
+	border-radius: 5px;
+	border-style: solid;
+	border-color: darkgoldenrod;
+	box-shadow: inset 0px 1px 2px rgba(0,0,0,.4);
+}
+div.rehi, div.nreki{
+	margin-left: 1rem;
+}
+div.reki{
+	margin-top: .5rem;
+	margin-left: 1rem;
+}
+span.rekel{
+	font-size: 8pt;
+	float: left;
+	margin-right: 3rem;
+}
+div.reke{
+	margin-bottom: 10px;
+}
+span.srehi{
+	padding-bottom: none;
+	border-bottom-width: 2px;
+	border-bottom-style: groove;
+	border-bottom-color: white;
+}
+span.srehit{
+	padding-right: 5rem;
+}
+

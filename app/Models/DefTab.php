@@ -5,9 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DefD extends Model
+class DefTab extends Model
 {
     use HasFactory;
-    protected $table = 'formanage';
-
+    protected $table = 'deftab';
+    protected $dates = [];
+    public $timestamps = false;
 }

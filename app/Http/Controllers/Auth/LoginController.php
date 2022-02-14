@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Session;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -26,7 +28,10 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected function authenticated(Request $request){
+        $request->session()->flash('toastr', config('toastr.login'));
+        return redirect('/view');
+    }
 
     /**
      * Create a new controller instance.
@@ -40,6 +45,17 @@ class LoginController extends Controller
 
     public function username() {
         return 'name';
+    }
+
+    use AuthenticatesUsers {
+        logout as performLogout;
+    }
+    public function logout(Request $request){
+        $this->performLogout($request);
+        $request->session()->invalidate();
+        $request->session()->regenerate();
+        $request->session()->flash('toastr', config('toastr.logout'));
+        return redirect('/view');
     }
 
 }
