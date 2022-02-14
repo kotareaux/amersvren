@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\AvlTime;
 use App\Models\ActivTab;
 use App\Models\Reserve;
+use App\Models\DefTab;
 
 class TabvController extends Controller
 {
@@ -16,9 +17,9 @@ class TabvController extends Controller
             $mm = $request->month+1;
         }else{
             if(Auth::check()){
-                //管理者モードの場合は.envのdefy,defm参照
-                $yyyy = config('app.DEFY');
-                $mm = config('app.DEFM');
+                $defa = DefTab::first();  //管理者モードの場合はformanageのdefay,defam参照
+                $yyyy = $defa['defay'];
+                $mm = $defa['defam'];
             }else{
                 $yyyy = idate('Y');
                 $mm = idate('m');

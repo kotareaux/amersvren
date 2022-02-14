@@ -229,9 +229,4 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
-
-    'DEFY' => env('DEFY'),
-    'DEFM' => env('DEFM'),
-
 ];
