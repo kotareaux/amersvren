@@ -230,4 +230,8 @@ return [
 
     ],
 
+
+    'DEFY' => env('DEFY'),
+    'DEFM' => env('DEFM'),
+
 ];

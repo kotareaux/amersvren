@@ -3,7 +3,7 @@
 @php
     $scres = json_decode(base64_decode(str_rot13($res)));
 @endphp
-@section('content')
+@section('contents')
 <div class="roya">
 @auth
 <div class='htle'>使用不可にする</div>

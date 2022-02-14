@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\TabvController;
 use App\Http\Controllers\RsvController;
 use App\Http\Controllers\HoniController;
+use App\Http\Controllers\AdminFuncController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +39,9 @@ Route::post('/reserve', function (Request $request) {
 
 Route::get('/send', [HoniController::class, 'gotoTop']);
 Route::post('/send', [RsvController::class, 'sendRsv'])->name('rsvset');
+
+Route::get('/dset', [HoniController::class, 'gotoTop']);
+Route::post('/dset', [AdminFuncController::class, 'setDefTab'])->name('setDefaultTab');
 
 
 Auth::routes([

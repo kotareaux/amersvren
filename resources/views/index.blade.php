@@ -1,7 +1,6 @@
 @extends('layouts.common')
 @section('title','Top')
-
-@section('content')
+@section('contents')
 <div class="htle">
     {{$tyear}}年{{$tmnth}}月の予約表
 </div>
@@ -25,18 +24,12 @@
 {!! Form::close() !!}
 </div>
 @endsection
-<!--
-    @php
-    echo "<pre>";
-    var_dump($tinfo);
-    echo "</pre>";
-    @endphp
--->
 @section('table')
 @auth
 <div class="hhlsk">
-{!! Form::open(['url' => '/#']) !!}
+{!! Form::open(['route' => 'setDefaultTab']) !!}
     {{ csrf_field() }}
+    {{ Form::hidden('tym', str_rot13(base64_encode(json_encode([$tyear, $tmnth]))))}}
     {!! Form::submit('デフォルトに設定', ['class'=>'yhhb']); !!}
 {!! Form::close() !!}
 </div>

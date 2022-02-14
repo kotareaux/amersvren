@@ -19,7 +19,7 @@
     <div class="oya">
         @include('layouts.header')
     <div class="boya">
-        @yield('content')
+        @yield('contents')
         @yield('table')
     </div>
 </div>

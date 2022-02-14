@@ -2,7 +2,7 @@
 
 @section('title','Top')
 
-@section('content')
+@section('contents')
 <div class="roya renai">
     <div class="row justify-content-center">
         <div class="col-md-8">

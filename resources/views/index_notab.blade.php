@@ -1,7 +1,6 @@
 @extends('layouts.common')
 @section('title','Top')
-
-@section('content')
+@section('contents')
 <div class="htle">
     {{$tyear}}年{{$tmnth}}月の予約表
 </div>
@@ -25,7 +24,6 @@
 {!! Form::close() !!}
 </div>
 @endsection
-
 @section('table')
 @auth
 つくる？
