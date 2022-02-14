@@ -56,7 +56,7 @@ input[type="submit"], button{
 	color: white;
 	cursor: pointer;
 	box-shadow: 2px 2px 2px rgba(0,0,0,.4);
-	vertical-align: top;
+	vertical-align: center;
 }
 input[type="submit"]:hover, button:hover{
 	background: linear-gradient(#F00, #222);

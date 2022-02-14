@@ -67,14 +67,14 @@ class RsvController extends Controller
                 ['time', $timeid]
             ])->exists();
         }else{
-            header('Refresh: 5; URL=/');
-            die('エラー：内部エラーが発生しました。<br>5秒後にトップへ戻ります。');
+            $request->session()->flash('toastr', config('toastr.error'));
+            return redirect('/view');
         }
 
 
         if($aru){
-            header('Refresh: 5; URL=/');
-            die('エラー：予約データが重複しています。<br>5秒後にトップへ戻ります。');
+            $request->session()->flash('toastr', config('toastr.rsv_dup_err'));
+            return redirect('/view');
         }else{
             if (Auth::check()){
             #insert 使用不可
@@ -121,15 +121,15 @@ class RsvController extends Controller
             }
 
             if($ins){
-                header('Refresh: 5; URL=/');
                 if(Auth::check()){
-                    echo('設定が完了しました。<br>5秒後にトップへ戻ります。<br><a href="/">あるいはここからトップへ</a>');
+                    $request->session()->flash('toastr', config('toastr.disset'));
                 }else{
-                    echo('予約が完了しました。<br>5秒後にトップへ戻ります。<br><a href="/">あるいはここからトップへ</a>');
+                    $request->session()->flash('toastr', config('toastr.reserve'));
                 }
+                return redirect('/view');
             }else{
-                header('Refresh: 5; URL=/');
-                die('エラー：データの登録に失敗しました。<br>5秒後にトップへ戻ります。');
+                $request->session()->flash('toastr', config('toastr.error'));
+                return redirect('/view');
             }
         }
 
