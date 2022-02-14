@@ -19,6 +19,7 @@
 <title>@yield('title') | アメミュ練習室予約システム</title>
 </head>
 <body>
+    @include('components.toastr')
     <div class="oya">
         @include('layouts.header')
     <div class="boya">

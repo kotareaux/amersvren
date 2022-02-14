@@ -15,11 +15,11 @@ class AdminFuncController extends Controller
             'defam' => $atym[1]
         ]);
         if($setDef){
-            header('Refresh: 5; URL=/');
-            echo('設定が完了しました。<br>5秒後にトップへ戻ります。<br><a href="/">あるいはここからトップへ</a>');
+            $request->session()->flash('toastr', config('toastr.defset'));
+            return redirect('/view');
         }else{
-            header('Refresh: 5; URL=/');
-            die('エラー：データの登録に失敗しました。<br>5秒後にトップへ戻ります。');
+            $request->session()->flash('toastr', config('toastr.error'));
+            return redirect('/view');
         }
     }
 }

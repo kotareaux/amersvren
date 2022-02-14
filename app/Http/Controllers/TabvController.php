@@ -17,7 +17,7 @@ class TabvController extends Controller
             $mm = $request->month+1;
         }else{
             if(Auth::check()){
-                $defa = DefTab::first();  //管理者モードの場合はformanageのdefay,defam参照
+                $defa = DefTab::first();  //管理者モードの場合はdeftabのdefay,defam参照
                 $yyyy = $defa['defay'];
                 $mm = $defa['defam'];
             }else{
