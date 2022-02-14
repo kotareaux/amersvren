@@ -1,4 +1,8 @@
 @extends('layouts.common')
+@section('additionalHead')
+<link rel="preload" href="/css/home.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="/css/home.css"></noscript>
+@endsection
 @section('title','Top')
 @section('contents')
 <div class="htle">
