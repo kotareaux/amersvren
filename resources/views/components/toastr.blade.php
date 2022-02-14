@@ -7,7 +7,7 @@
             toastr.options = {
 	            "positionClass": "toast-top-left",
 	            }
-            toastr.{{session('toastr')["type"]}}('{{session('toastr')["text"]}}', '{{session('toastr')["titl"]}}');
+            toastr.{{session('toastr')["type"]}}('{{session('toastr')["text"]}}', '{{session('toastr')["titl"] ?? null}}');
         });
 </script>
 @endif

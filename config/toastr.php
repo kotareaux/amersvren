@@ -20,6 +20,14 @@ return [
         'type' => 'success',
         'text' => '削除処理が正常に完了しました',
     ],
+    'login' => [
+        'type' => 'info',
+        'text' => 'ログインしました',
+    ],
+    'logout' => [
+        'type' => 'info',
+        'text' => 'ログアウトしました',
+    ],
     'rsv_dup_err' => [
         'type' => 'danger',
         'text' => '予約データが重複しています',

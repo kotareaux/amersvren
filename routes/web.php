@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\TabvController;
@@ -30,7 +31,6 @@ Route::get('/view', function () {
 Route::any('/view', [TabvController::class, 'showTab'])->name('viewtab');
 
 Route::get('/reserve', [HoniController::class, 'gotoTop']);
-
 Route::post('/reserve', function (Request $request) {
     return view('reserve', [
         'res'=>$request->jrsi,
